@@ -1,0 +1,411 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"task",
+				"taskpapp"
+			],
+			[
+				"get",
+				"getAll"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "todo.css",
+			"settings":
+			{
+				"buffer_size": 27,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "angular.module('taskpapp',['firebase','ngTagsInput','ui.bootstrap']);\n\nfunction TodoCtrl($scope, $firebase,$firebaseSimpleLogin){\n\n  todos = $firebase(new Firebase('https://taskk-angular-rahman.firebaseio.com/'));\n\n  todos.$bind($scope, 'todos').then(function() {\n    $scope.show = $scope.getAll();\n  });\n   $scope.getPercentage = function() {\n          var total = $scope.getAll().length;\n          var done = $scope.getCompleted().length;\n          return done / total * 100;\n        };\n  $scope.status = 'all';\n  $scope.shouldShow= function(todo) {\n   \n    if($scope.status == 'all') {return true;}\n    if($scope.status == 'completed') {return todo.done;}\n    if($scope.status == 'pending') {return !todo.done;}\n  }\n\n  $scope.addTodo=function(){\n\n\n\n    var newTodo={\n      done: false,\n      priority: 'Left',\n      text: $scope.todoText,\n      duedate:'',\n\n\n    };\n\n      \n    todos.$add(newTodo);\n    $scope.todoText='';\n  };\n  //remove todo function\n  $scope.removeTodo=function(key){\n    todos.$remove($scope.ids[key]);\n\n  };\n\n\n \n\n  $scope.getAll = function() {\n    var all = [];\n\n  $scope.ids=[];\n    for(t in todos) {\n      if(typeof todos[t] != 'function' && t !== '$id') {$scope.ids.push(t); all.push(todos[t]);}\n    }\n    return all;\n  }\n\n  $scope.getAllUsers = function() {\n    var all = [];\n\n    for(t in $scope.users) {\n      if(typeof $scope.users[t] != 'function' && t !== '$id') {all.push($scope.users[t]);}\n    }\n    return all;\n  }\n\n  $scope.getCompleted = function() {\n    return $scope.getAll().filter(function(t) { return t.done; });\n  };\n\n  $scope.getPending = function() {\n    return $scope.getAll().filter(function(t) { return !t.done; });\n  };\n\n  //move a todo funtion\n  $scope.move=function(todo,direction){ };\n  $scope.isCollapsed = true;\n  $scope.isaCollapsed = true;\n\n  $scope.search = {scope: 'all'};\n\n/////date picker\n\n  $scope.today = function() {\n    $scope.dt = new Date();\n  };\n  $scope.today();\n\n  $scope.showWeeks = true;\n  $scope.toggleWeeks = function () {\n    $scope.showWeeks = ! $scope.showWeeks;\n  };\n\n  $scope.clear = function () {\n    $scope.dt = null;\n  };\n\n  // Disable weekend selection\n  $scope.disabled = function(date, mode) {\n    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );\n  };\n\n  $scope.toggleMin = function() {\n    $scope.minDate = ( $scope.minDate ) ? null : new Date();\n  };\n  $scope.toggleMin();\n\n  $scope.open = function($event) {\n    $event.preventDefault();\n    $event.stopPropagation();\n\n    $scope.opened = true;\n  };\n\n  $scope.dateOptions = {\n    'year-format': \"'yy'\",\n    'starting-day': 1\n  };\n\n  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];\n\n\n  ///////////lllllllllllllllllll\n\n\n\n  var userRef = new Firebase(\"https://taskk-angular-rahman.firebaseio.com/users/\");\n  $scope.users = $firebase(userRef);\n  $scope.loginObj = $firebaseSimpleLogin(userRef);\n  $scope.login = function() {\n    $scope.loginObj.$login('google').then(function(user) {\n      $scope.users.$add({name: user.displayName, uid: user.uid, email: user.email});\n    })\n  }\n}\n\n\n\n\n\n",
+			"file": "todo.js",
+			"file_size": 4049,
+			"file_write_time": 130397037679711779,
+			"settings":
+			{
+				"buffer_size": 3063,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "todo.html",
+			"settings":
+			{
+				"buffer_size": 5657,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Index.html",
+			"settings":
+			{
+				"buffer_size": 3808,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "ng-tags-input.min.css",
+			"settings":
+			{
+				"buffer_size": 3628,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "chat.html",
+			"settings":
+			{
+				"buffer_size": 1562,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/abdulrahman/Downloads/fff/Index.html",
+		"/media/AC262F39262F03C4/2 year docs/fff/index.html",
+		"/home/abdulrahman/Downloads/fff/js/ga.js",
+		"/home/abdulrahman/Downloads/fff/index.html",
+		"/home/abdulrahman/Downloads/fff/index.js",
+		"/home/abdulrahman/Downloads/fff/login.html",
+		"/home/abdulrahman/Downloads/Angular-js-todolist-master/index.html",
+		"/home/abdulrahman/Downloads/angularjs-input-tags-master/style.css",
+		"/home/abdulrahman/Downloads/angularjs-input-tags-master/tags.js",
+		"/home/abdulrahman/Downloads/fff/index.css",
+		"/home/abdulrahman/Downloads/fff11/index.html",
+		"/home/abdulrahman/Downloads/fff11/index.js",
+		"/home/abdulrahman/Downloads/fff/index.css~",
+		"/home/abdulrahman/Downloads/projectf/index.js",
+		"/home/abdulrahman/Downloads/projectf/index.html",
+		"/media/AC262F39262F03C4/project/index.html",
+		"/home/abdulrahman/Downloads/project/ng-tags-input.min.css",
+		"/home/abdulrahman/Downloads/pppppppppp/index.html"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"notes",
+			"options",
+			"filter",
+			"href",
+			"showFn",
+			"com",
+			">\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "todo.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 27,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								27,
+								27
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "todo.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3063,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3003,
+								3003
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 285.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "todo.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5657,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								932,
+								932
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2286.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3808,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 162.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "ng-tags-input.min.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3628,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 5015.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "chat.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1562,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								26,
+								26
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "index.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,53 @@
+angular.module('taskpapp',['firebase','ui.bootstrap']);
+
+function TodoCtrl($scope, $firebase){
+
+  todos = $firebase(new Firebase('https://abbutasks.firebaseio.com/tasks'));
+
+  todos.$bind($scope, 'todos');
+  
+
+  $scope.addTodo=function(){
+    var newTodo={
+      done: false,
+      priority: 'Left',
+      text: $scope.todoText
+    };
+    $scope.todos.$add(newTodo);
+    $scope.todoText='';
+  };
+  //remove todo function
+  $scope.removeTodo=function(key){
+    todos.$remove(key);
+  };
+
+  $scope.getAll = function() {
+    var all = [];
+    for(t in todos) {
+      if(typeof todos[t] != 'function' && t !== '$id') { all.push(todos[t]);}
+    }
+    return all;
+  }
+
+  $scope.getCompleted = function() {
+    return $scope.getAll().filter(function(t) { return t.done; });
+  };
+
+  $scope.getPending = function() {
+    return $scope.getAll().filter(function(t) { return !t.done; });
+  };
+
+  //move a todo funtion
+  $scope.move=function(todo,direction){ };
+  $scope.isCollapsed = true;
+
+  $scope.search = {scope: 'all'};
+
+        $scope.getPercentage = function() {
+          var total = $scope.todos.length;
+          var done = $scope.todos.filter(function(t) { return t.done; }).length;
+          return done / total * 100;
+        };
+}
+
+

@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Firebase Simple Login</title>
+  <link rel="stylesheet" href="http://firebase.github.io/firebase-simple-login/css/reset.css">
+  <link rel="stylesheet" href="http://firebase.github.io/firebase-simple-login/css/text.css">
+  <link rel="stylesheet" href="http://firebase.github.io/firebase-simple-login/css/960.css">
+  <link rel="stylesheet" href="http://firebase.github.io/firebase-simple-login/css/style.css">
+  <script type="text/javascript" async="" src="js/ga.js"></script><script type="text/javascript" src="js/prettify.js"></script><style type="text/css">
+																																													 </style>
+</head>
+<body onload="prettyPrint();">
+
+  <div class="header">
+    <div id=loggy class="ribbon"></div>
+  </div>
+&nbsp;<div class="container_12">
+
+    <div class="grid_12">
+      <br>
+      <div class="box">
+        &nbsp;</div>
+    </div>
+
+    <div class="clear"></div>
+    <div class="grid_4">
+      <br>
+      <div class="box">
+        <fieldset>
+          <legend class="bold">Supported Providers</legend>
+          <div class="content">
+            <p>
+              Click any of the links below to log in.
+            </p>
+            <div class="example facebook">
+              <div class="icon"></div>
+              <div class="description">
+                <h4>Facebook</h4>
+                <p><a href="javascript:login('facebook');">Log In »</a></p>
+              </div>
+            </div>
+            <div class="example persona">
+                <div class="icon">
+				</div>
+				<div class="description">
+					<h4>Persona</h4>
+					<p><a href="javascript:login('persona');">Log In »</a></p>
+				</div>
+            </div>
+            <div class="example twitter">
+              <div class="icon"></div>
+              <div class="description">
+                <h4>Twitter</h4>
+                <p><a href="javascript:login('twitter');">Log In »</a></p>
+              </div>
+            </div>
+            <div class="example password">
+              <div class="description">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="grid_8">
+      <br>
+      <div class="box">
+        &nbsp;</div>
+
+    </div>
+
+    <div class="clear"></div>
+    <div class="grid_12">
+      <img src="js/hr.png">
+    </div>
+
+    <div id="contact">
+      <div class="clear"></div>
+      <div class="grid_4 prefix_4 suffix_4 center">
+        <br>
+      </div>
+
+      <div class="clear"></div>
+      <div class="grid_5 prefix_1 center">
+      </div>
+      <div class="grid_5 suffix_1 center">
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="js/firebase.js"></script>
+  <script type="text/javascript" src="js/firebase-simple-login.js"></script>
+  <script type="text/javascript" src="js/include.js"></script>
+  <script type="text/javascript">
+    var href = document.location.href;
+     
+    // FirebaseSimpleLogin demo instantiation
+    var firebaseRef = new Firebase("https://taskk-angular-rahman.firebaseio.com/");
+    var auth = new FirebaseSimpleLogin(firebaseRef, function(error, user) {
+      if (error) {
+        // an error occurred while attempting login
+        alert(error);
+      } else if (user) {
+        // user authenticated with Firebase, redirect to the app
+    
+        window.location.href='todo.html?id=' +user.id;
+
+      // Log out so we can log in again with a different provider.
+      // auth.logout();
+      } else {
+        // user is logged out
+      }
+    });
+    function login(provider) {
+      auth.login(provider);
+    }
+
+   
+  </script>
+<iframe style="display: none;"></iframe><iframe src="js/lp.htm" style="display: none;"></iframe></body></html>
